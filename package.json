@@ -1,0 +1,24 @@
+{
+  "name": "sql-storefront",
+  "version": "1.0.0",
+  "description": "A MySQL online store and product management app",
+  "main": "app.js",
+  "dependencies": {
+    "inquirer": "^2.0.0",
+    "mysql": "^2.12.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mchlltt/sql-storefront.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mchlltt/sql-storefront/issues"
+  },
+  "homepage": "https://github.com/mchlltt/sql-storefront#readme"
+}
