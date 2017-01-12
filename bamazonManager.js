@@ -123,7 +123,7 @@ function selectItemToRestock() {
                     return 'What quantity would you like to add of ' + answers.item.split(' | ')[1] + '? ' + answers.item.split(' | ')[3];
                 },
                 validate: function(answer) {
-                    var pattern = /\d+/;
+                    var pattern = /^\d+$/;
                     if (pattern.test(answer)) {
                         return true;
                     } else {
@@ -218,8 +218,8 @@ function promptForNewProductInfo() {
                 type: 'input',
                 message: 'What should the price be for this new item?',
                 validate: function(answer) {
-                    var pattern1 = /\d+\.\d\d/;
-                    var pattern2 = /\d+/;
+                    var pattern1 = /^\b\d+\.\d\d\b$/;
+                    var pattern2 = /^\b\d+\b$/;
                     if (pattern1.test(answer) || pattern2.test(answer)) {
                         return true;
                     } else {
@@ -232,7 +232,7 @@ function promptForNewProductInfo() {
                 type: 'input',
                 message: 'What should the initial quantity be for this item?',
                 validate: function(answer) {
-                    var pattern = /\d+/;
+                    var pattern = /^\d+$/;
                     if (pattern.test(answer)) {
                         return true;
                     } else {

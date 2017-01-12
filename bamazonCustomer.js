@@ -65,7 +65,7 @@ function promptUserForSelection() {
                     return 'What quantity would you like to purchase of ' + answers.item.split(' | ')[1] + '? ' + answers.item.split(' | ')[3];
                 },
                 validate: function(answer) {
-                    var pattern = /\d+/;
+                    var pattern = /^\d+$/;
                     if (pattern.test(answer)) {
                         return true;
                     } else {
