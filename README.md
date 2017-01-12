@@ -32,3 +32,10 @@ TBA
 - MySQL
 - Inquirer.js
 
+## Author
+Mich Elliott - @[mchlltt](https://github.com/mchlltt)
+
+## Acknowledgements
+My thanks to
+- Node.js contributors and package creators
+- Northwestern Coding Boot Camp
