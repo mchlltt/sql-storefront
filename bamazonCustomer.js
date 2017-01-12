@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
 
 // Initialize database snapshot and current item variables in global scope.
 var snapshot;
-var currentItem;
+var currentItem = {};
 
 // Begin script by testing connection.
 testConnection();
@@ -31,7 +31,7 @@ function testConnection() {
 
 // Get database snapshot to be used for user prompt.
 function getDatabaseSnapshot() {
-    mysql.query('SELECT * FROM products', function(err, data) {
+    connection.query('SELECT * FROM products', function(err, data) {
         if (err) {
             console.log(err);
         } else {
@@ -52,7 +52,7 @@ function promptUserForSelection() {
                 choices: function () {
                     var choices = [];
                     snapshot.forEach(function (item) {
-                        var name = item.item_id + ' | ' + item.product_name + ' | Price: $' + item.price + ' | Quantity Available: ' + item.quantity;
+                        var name = item.item_id + ' | ' + item.product_name + ' | Price: $' + item.price + ' | Quantity Available: ' + item.stock_quantity;
                         choices.push(name);
                     });
                     return choices;
@@ -62,7 +62,7 @@ function promptUserForSelection() {
                 name: 'quantity',
                 type: 'input',
                 message: function(answers) {
-                    return 'What quantity would you like to purchase of ' + answers.item.split(' | ')[1] + '?\n' + answers.item.split(' | ')[3];
+                    return 'What quantity would you like to purchase of ' + answers.item.split(' | ')[1] + '? ' + answers.item.split(' | ')[3];
                 },
                 validate: function(answer) {
                     var pattern = /\d+/;
@@ -77,10 +77,11 @@ function promptUserForSelection() {
     ).then(
         function(answers) {
 
-            currentItem.item_id = parseInt(answers.split(' | ')[0], 10);
-            currentItem.product_name = answers.split(' | ')[1];
-            currentItem.price = parseFloat(answers.split(' | ')[2].split('$')[1]);
+            currentItem.item_id = parseInt(answers.item.split(' | ')[0], 10);
+            currentItem.product_name = answers.item.split(' | ')[1];
+            currentItem.price = parseFloat(answers.item.split(' | ')[2].split('$')[1]);
             currentItem.quantity_requested = parseInt(answers.quantity, 10);
+
 
             checkDatabaseQuantity();
         }
@@ -89,14 +90,14 @@ function promptUserForSelection() {
 
 // Check that the requested quantity is still available in the database.
 function checkDatabaseQuantity() {
-    mysql.query('SELECT quantity FROM products WHERE item_id = ?', currentItem.item_id, function(err, data) {
+    connection.query('SELECT stock_quantity FROM products WHERE item_id = ?', currentItem.item_id, function(err, data) {
         if (err) {
             console.log(err);
         } else {
-            if (currentItem.quantity_requested <= data[0].quantity) {
-                updateDatabase(data[0].quantity);
+            if (currentItem.quantity_requested <= data[0].stock_quantity) {
+                updateDatabase(data[0].stock_quantity);
             } else {
-                sendQuantityAlert(data[0].quantity);
+                sendQuantityAlert(data[0].stock_quantity);
             }
         }
     });
@@ -104,19 +105,19 @@ function checkDatabaseQuantity() {
 
 // If there is enough stock, decrement the stock in the database and give the user their total.
 function updateDatabase(quantity) {
-    mysql.query('UPDATE products SET quantity = ? WHERE item_id = ?',
+    connection.query('UPDATE products SET stock_quantity = ? WHERE item_id = ?',
         [quantity - currentItem.quantity_requested, currentItem.item_id], function(err, data) {
         if (err) {
             console.log(err);
         } else {
             returnTotalToUser();
         }
-    })
+    });
 }
 
 // If there is not enough stock, alert user with current quantity and restart purchase process.
 function sendQuantityAlert(quantity) {
-    console.log('Sorry, insufficient quantity. Remaining quantity: ' + quantity);
+    console.log('Sorry, insufficient quantity. Remaining quantity: %s', quantity);
     setTimeout(getDatabaseSnapshot, 1500);
 }
 
@@ -137,10 +138,11 @@ function promptForAdditionalPurchases() {
         function(answers) {
             if (answers.continue) {
                 currentItem = {};
-                getItems();
+                getDatabaseSnapshot();
             } else {
                 console.log('Thank you, have a great day!');
+                connection.end();
             }
         }
-    )
+    );
 }
