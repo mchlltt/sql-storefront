@@ -12,9 +12,6 @@ A MySQL online store and product management application.
     - Add stock to an item
     - Add a new item
     
-## Screenshots
-TBA
-
 ## Prerequisites
 - MySQL
 - Node.js
@@ -22,6 +19,7 @@ TBA
 ## Getting Started
 - Clone this repository to your machine.
 - Run `console.sql` in your preferred MySQL program.
+- Run `npm install` to install necessary Node packages.
 - Run `node bamazonCustomer.js` for the customer view.
 - Run `node bamazonManager.js` for the manager view.
 
@@ -31,6 +29,42 @@ TBA
 - WebStorm
 - MySQL
 - Inquirer.js
+
+## Screenshots
+
+### Customer view
+- Initial prompt
+
+![](https://raw.githubusercontent.com/mchlltt/sql-storefront/master/Screenshots/1.png)
+
+- Checkout process, including error handling.
+
+![](https://raw.githubusercontent.com/mchlltt/sql-storefront/master/Screenshots/2.png)
+
+### Manager view
+- Initial prompt
+
+![](https://raw.githubusercontent.com/mchlltt/sql-storefront/master/Screenshots/3.PNG)
+
+- View all items
+
+![](https://raw.githubusercontent.com/mchlltt/sql-storefront/master/Screenshots/4.PNG)
+
+- View low quantity items
+
+![](https://raw.githubusercontent.com/mchlltt/sql-storefront/master/Screenshots/5.PNG)
+
+- Add stock of an item
+
+![](https://raw.githubusercontent.com/mchlltt/sql-storefront/master/Screenshots/9.PNG)
+
+- Add new item, part 1
+
+![](https://raw.githubusercontent.com/mchlltt/sql-storefront/master/Screenshots/7.PNG)
+
+- Add new item, part 2 + show updated all items view
+
+![](https://raw.githubusercontent.com/mchlltt/sql-storefront/master/Screenshots/8.PNG)
 
 ## Author
 Mich Elliott - @[mchlltt](https://github.com/mchlltt)
