@@ -158,7 +158,7 @@ function updateDatabaseQuantity() {
 
 // Display a message to confirm that the item's stock was updated.
 function confirmSuccessfulUpdate() {
-    console.log('Update successful! New stock for Item #', currentItem.item_id, ': ' + (currentItem.currentQuantity + currentItem.quantityToAdd));
+    console.log('Update successful! New stock for Item #' + currentItem.item_id + ': ' + (currentItem.currentQuantity + currentItem.quantityToAdd));
     setTimeout(promptForAdditionalActions, 1500);
 }
 

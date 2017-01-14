@@ -124,7 +124,7 @@ function sendQuantityAlert(quantity) {
 // Display the user's total and ask whether they'd like to make more purchases.
 function returnTotalToUser() {
     var total = currentItem.price * currentItem.quantity_requested;
-    console.log('Purchase successful! Your total: %s', total);
+    console.log('Purchase successful! Your total: $%s', total);
     setTimeout(promptForAdditionalPurchases, 1500);
 }
 
