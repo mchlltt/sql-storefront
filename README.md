@@ -1,7 +1,7 @@
 # SQL Storefront
 A MySQL online store and product management application.
 
-## Features
+### Features
 - Integrated MySQL database
 - Customer view
     - View all items
@@ -24,11 +24,11 @@ A MySQL online store and product management application.
 - Run `node bamazonManager.js` for the manager view.
 
 ## Technologies Used
-- Node/NPM
-- DataGrip
-- WebStorm
-- MySQL
-- Inquirer.js
+- Node/NPM (JavaScript environment/package manager)
+- DataGrip (Database IDE)
+- WebStorm (JavaScript IDE)
+- MySQL (RDBMS)
+- Inquirer.js (Command line interaction interface)
 
 ## Screenshots
 
