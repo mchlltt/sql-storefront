@@ -50,12 +50,9 @@ function promptUserForSelection() {
                 type: 'list',
                 message: 'Which item would you like to purchase?',
                 choices: function () {
-                    var choices = [];
-                    snapshot.forEach(function (item) {
-                        var name = item.item_id + ' | ' + item.product_name + ' | Price: $' + item.price + ' | Quantity Available: ' + item.stock_quantity;
-                        choices.push(name);
+                    return snapshot.map(function (item) {
+                        return item.item_id + ' | ' + item.product_name + ' | Price: $' + item.price + ' | Quantity Available: ' + item.stock_quantity;
                     });
-                    return choices;
                 }
             },
             {

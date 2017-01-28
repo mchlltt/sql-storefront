@@ -108,12 +108,9 @@ function selectItemToRestock() {
                 type: 'list',
                 message: 'Which item would you like to restock?',
                 choices: function () {
-                    var choices = [];
-                    snapshot.forEach(function (item) {
-                        var name = item.item_id + ' | ' + item.product_name + ' | Price: $' + item.price + ' | Current Quantity: ' + item.stock_quantity;
-                        choices.push(name);
+                    return snapshot.map(function (item) {
+                        return item.item_id + ' | ' + item.product_name + ' | Price: $' + item.price + ' | Current Quantity: ' + item.stock_quantity;
                     });
-                    return choices;
                 }
             },
             {
