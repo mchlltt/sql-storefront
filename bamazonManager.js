@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: '5555',
+    password: '',
     database: 'bamazon_db'
 });
 
@@ -155,7 +155,7 @@ function updateDatabaseQuantity() {
 
 // Display a message to confirm that the item's stock was updated.
 function confirmSuccessfulUpdate() {
-    console.log('Update successful! New stock for Item #', currentItem.item_id, ': ' + (currentItem.currentQuantity + currentItem.quantityToAdd));
+    console.log('Update successful! New stock for Item #' + currentItem.item_id + ': ' + (currentItem.currentQuantity + currentItem.quantityToAdd));
     setTimeout(promptForAdditionalActions, 1500);
 }
 

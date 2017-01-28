@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: '5555',
+    password: '',
     database: 'bamazon_db'
 });
 
@@ -121,7 +121,7 @@ function sendQuantityAlert(quantity) {
 // Display the user's total and ask whether they'd like to make more purchases.
 function returnTotalToUser() {
     var total = currentItem.price * currentItem.quantity_requested;
-    console.log('Purchase successful! Your total: %s', total);
+    console.log('Purchase successful! Your total: $%s', total);
     setTimeout(promptForAdditionalPurchases, 1500);
 }
 
