@@ -15,8 +15,8 @@
     "type": "git",
     "url": "git+https://github.com/mchlltt/sql-storefront.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "mchlltt",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mchlltt/sql-storefront/issues"
   },
